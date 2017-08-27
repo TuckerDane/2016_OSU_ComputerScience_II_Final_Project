@@ -1,7 +1,7 @@
 # 2016 Oregon State University Computer Science II FinalProject
 The Final Project for my Computer Science II course taken at Oregon State University
 
-This Program is a text-based game using Object Oriented Programming design principles in C++. It includes a Reflection Document / Project Summary detailing: design description, changes to the original design, and the test plan. Functionally, the user controlls a character that moves around inside of a 2D text-based set of rooms. These rooms are linked together by doors that point to other rooms. The user can pick up or drop objects into or from a limited inventory bag. The user can also affect his or her surrondings by flipping switches inside certain rooms.
+This Program is a text-based game using Object Oriented Programming design principles in C++. It includes a Reflection Document / Project Summary detailing: design description, changes to the original design, and the test plan. Functionally, the user controls a character that moves around inside of a 2D text-based set of rooms. These rooms are linked together by doors that point to other rooms. The user can pick up or drop objects into or from a limited inventory bag. The user can also affect his or her surroundings by flipping switches inside of certain rooms.
 
 Inside you will find:
   1.  Header Files
