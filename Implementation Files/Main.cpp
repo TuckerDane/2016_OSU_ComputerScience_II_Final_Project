@@ -1,6 +1,8 @@
 
 #include <iostream>
 #include <stdlib.h>
+#include <stdio.h>
+#include <Windows.h>
 #include "Space.h"
 #include "Object.h"
 #include "Dungeon.h"
@@ -8,6 +10,21 @@
 using std::cout;
 using std::cin;
 using std::endl;
+
+void cls() //windows h function to replace screen with nulls
+{
+	DWORD n;
+	DWORD size;
+	COORD coord = { 0 };
+	CONSOLE_SCREEN_BUFFER_INFO csbi;
+	HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
+	GetConsoleScreenBufferInfo(h, &csbi);
+	size = csbi.dwSize.X * csbi.dwSize.Y;
+	FillConsoleOutputCharacter(h, TEXT(' '), size, coord, &n);
+	GetConsoleScreenBufferInfo(h, &csbi);
+	FillConsoleOutputAttribute(h, csbi.wAttributes, size, coord, &n);
+	SetConsoleCursorPosition(h, coord);
+}
 
 int main(void)
 {
@@ -17,7 +34,7 @@ int main(void)
 	castle.setSpaces();
 	castle.setPlayer(castle.getRoom(0), 1);
 	
-	int clock = 1000;
+	int clock = 100000;
 	bool gameWon = false;
 	bool moving = true;
 	while (moving == true)
@@ -31,11 +48,18 @@ int main(void)
 		cout << "\tMove " << castle.getPlayer()->getName() << " around using WSAD or press X to escape" << endl << endl;
 		castle.getPlayer()->displayBackpack();
 
-		char direction;
-		direction = _getch();
+		char direction = 'p';
+
+		//if (_kbhit() != 0)
+		//{
+			direction = _getch();
+		//}
 		//cin >> direction;
 		//std::system("clear");
-		system("CLS");
+		//system("CLS");
+
+		//HANDLE cons = GetStdHandle(STD_OUTPUT_HANDLE);
+		cls();
 
 		if (direction == 'x' || direction == 'X')					// quit movement
 		{
@@ -61,7 +85,7 @@ int main(void)
 				}
 			}
 		}
-		else if ('0' < direction && direction < '9');					// if player tries to drop an object
+		else if ('0' < direction && direction < '9')					// if player tries to drop an object
 		{
 			int pRoom = castle.getPlayer()->getCRoom();					// room number player is in
 			int pRowPos = castle.getPlayer()->getRowPos();				// row player is on
