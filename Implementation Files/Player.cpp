@@ -51,6 +51,30 @@ void Player::setPlayerRoom(string room, int i)
 }
 
 /***************************************************************************************************
+**	set the color of the space on screen
+***************************************************************************************************/
+void Player::setColor(string color)
+{
+	if (color == "red")
+	{
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+	}
+	else if (color == "yellow")
+	{
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14);
+	}
+	else if (color == "green")
+	{
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 10);
+	}
+	else if (color == "blue")
+	{
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+	}
+	// else white, no change
+}
+
+/***************************************************************************************************
 **	a function which gets the room the player is in
 ***************************************************************************************************/
 string Player::getPlayerRoom()
@@ -102,17 +126,23 @@ void Player::displayBackpack()
 {
 	cout << "\tYOU CAN CARRY UP TO 20 LBS" << endl;
 	cout << "\tTHE FOLLOWING ARE THE ITEMS YOU HAVE IN YOUR BACKPACK: " << endl << endl;
+	cout << "\titem\tsymbol\tname\t\tweight\n";
+	cout << "\t----\t------\t----\t\t------\n";
 
 	for (int i = 0; i < 9; i++)
 	{
 		if (backpack[i] == NULL)
 		{
-			cout << "\t" << i + 1 << ":\t\t\tOPEN SLOT" << endl;
+			cout << "\t" << i + 1 << "\t\tOPEN SLOT\t" << endl;
 		}
 		else
 		{
-			cout << "\t" << i + 1 << ":\t" << backpack[i]->getSymbol() << "\t" << backpack[i]->getName() << " " << backpack[i]->getType();
-			cout << " weighing " << backpack[i]->getWeight() << " lbs" << endl;
+			cout << "\t" << i + 1 << "\t";											// item
+			setColor(backpack[i]->getName());										// set color
+			cout << backpack[i]->getSymbol() << "\t";								// symbol
+			cout <<	backpack[i]->getName() << " " << backpack[i]->getType();		// name
+			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);			// set color back
+			cout << "\t" << backpack[i]->getWeight() << " lbs" << endl;				// weight
 		}
 	}
 	cout << endl;

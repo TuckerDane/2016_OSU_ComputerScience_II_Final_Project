@@ -167,6 +167,30 @@ void Space::setSpace(string sn, Player *p, Space *l, Space *r, Space *t, Space *
 }
 
 /***************************************************************************************************
+**	set the color
+***************************************************************************************************/
+void Space::setColor(string color)
+{
+	if (color == "red")
+	{
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+	}
+	else if (color == "yellow")
+	{
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14);
+	}
+	else if (color == "green")
+	{
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 10);
+	}
+	else if (color == "blue")
+	{
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+	}
+	// else white, no change
+}
+
+/***************************************************************************************************
 **	returns a door
 ***************************************************************************************************/
 Door* Space::getDoor(string d)
@@ -259,11 +283,15 @@ void Space::printSpace()
 			cout << " ";
 			if (player->getColPos() == j && player->getRowPos() == i)								// if the player is there
 			{
-				cout << player->getSymbol();														// print the player
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 11);					// set player color to Cyan
+				cout << player->getSymbol();													// print the player
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);					// set color back
 			}
 			else if (getSpPos(i, j) != NULL)													// if there is an object
 			{
+				setColor(this->space[i][j]->getName());											// set the symbol color
 				cout << this->space[i][j]->getSymbol();											// Print out the object's symbol
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);					// set color back
 			}
 			else if ((i == 0 && j == 0) || (i == getSpSizeRow()-1 && j == getSpSizeCol()-1))	// if top left corner wall or bottom right corner wall
 			{
