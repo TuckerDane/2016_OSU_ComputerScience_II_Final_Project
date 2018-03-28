@@ -13,6 +13,7 @@
 
 #include <iostream>
 #include <conio.h>
+#include <Windows.h>
 #include "Object.h"
 #include "Player.h"
 #include "Aarow.h"
@@ -51,6 +52,7 @@ public:
 	virtual void setDoors(bool leftD, bool rightD, bool topD, bool bottomD);	// a function which sets the doors for the Space
 	virtual void setSpacePtrs(Space* t, Space* b, Space* l, Space* r);			// a function which sets the pointers (top, bottom, left and right) for the space
 	virtual void setSpace(string sn, Player *p, Space *l, Space *r, Space *t, Space *b, Object *o, int num) = 0;
+	virtual void setColor(string color);
 
 	virtual void setObjectPos(Object *o) = 0;									// pure virtual function allowing the setting of a specific object
 

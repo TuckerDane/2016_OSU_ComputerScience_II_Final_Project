@@ -12,6 +12,7 @@
 #define PLAYER_HPP
 
 #include <stdlib.h>
+#include <Windows.h>
 #include "Object.h"
 using std::cout;
 using std::endl;
@@ -33,6 +34,7 @@ public:
 
 	void setSymbol(char s);					// a function which changes the player's symbol
 	void setPlayerRoom(string room, int i);	// a function which changes the room the player is in
+	void setColor(string color);			// sets the color of the text on screen
 
 	string getPlayerRoom();					// a function which gets the room the player is in
 	int getCRoom();							// gets the room tucker is in
