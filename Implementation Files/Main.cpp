@@ -34,7 +34,7 @@ int main(void)
 	castle.setSpaces();
 	castle.setPlayer(castle.getRoom(0), 1);
 	
-	int clock = 100000;
+	int clock = 500;
 	bool gameWon = false;
 	bool moving = true;
 	while (moving == true)
@@ -50,15 +50,10 @@ int main(void)
 
 		char direction = 'p';
 
-		//if (_kbhit() != 0)
-		//{
-			direction = _getch();
-		//}
-		//cin >> direction;
-		//std::system("clear");
-		//system("CLS");
+		direction = _getch();
+		//cin >> direction;			// use for linux...
+		//std::system("clear");		// i need to update this... system calls are bad
 
-		//HANDLE cons = GetStdHandle(STD_OUTPUT_HANDLE);
 		cls();
 
 		if (direction == 'x' || direction == 'X')					// quit movement
